@@ -9,6 +9,7 @@ This line was an overkill. Let me break this down.
 You have a problem that you would like to solve. You need to describe how the problem should be decomposed into smaller transformation.
 
 **Here is my understanding at the first glance:**
+
 You want to make a tea. You have no idea how to make one. But you know the incredients. So, you may tell saying, 
 Prepare a tea by using milk, tea powder from the shelf 1 and a little bit of sugar. The system would indentify the steps by looking for the way to prepare based on attentions provided by tea powder and sugar. This is just my opinion at the moment. 
 
@@ -21,7 +22,8 @@ Let us say, the input query is rephrased by the language model here.
 
 AND or OR -> What it means is the system determines whether to make an LM query or an RM query by taking decisions implicitly. 
 
-What is the context mentioned here: 
+**What is the context mentioned here: **
+
 The context could be the real piece of information that is required by a language model to answer the original query. 
 The RM model takes in a query that resolves to some intermediate attributes that are required. 
 The response from RM are appended as context for the later LM to parse and answer the original solution. 
@@ -36,13 +38,14 @@ Transformations generate text (by invoking a language model; LM) and/or search f
 
 **DSP** programs invoke LMs in a declarative way: you focus on the _what_ (i.e., the algorithmic design of decomposing the problem) and delegate _how_ the transformations are mapped to LM (or RM) calls to the **DSP** runtime. In particular, **DSP** discourages "prompt engineering", which we view much the same way as hyperparameter tuning in traditional ML: a final and minor step that's best done _after_ building up an effective architecture (and which could be delegated to automatic tuning).
 
-What is a declarative way mean?
-There are two types of invoking a system: Imperative and declarative. 
+**What is a declarative way mean?**
+
+There are two types of invoking a system: **Imperative and declarative.**
 As per POE: Invoking a language model (LM) in a declarative way means providing input to the model in a structured, concise, and declarative format that specifies the desired output, without explicitly specifying the steps or algorithms required to produce it. This is in contrast to an imperative approach, where the user specifies a sequence of steps to be executed by the LM in order to produce the desired output. In a declarative approach, the user typically specifies the inputs and outputs of the LM, along with any relevant constraints or preferences, using a high-level language or formalism. The LM then uses its internal algorithms and knowledge to generate the desired output, without requiring the user to specify the details of how this should be done.
 
 "How" is delegated to LM and(or RM) calls.
 
-What does it mean by DSP discourages "prompt engineering"?
+**What does it mean by DSP discourages "prompt engineering"?**
 As per DSP (Demonstrate Search, Predict): 
 
     Demonstrate: The user provides one or more example outputs that the LM should be able to generate.
@@ -57,13 +60,19 @@ POE: By using this approach, DSP avoids the need for explicit prompt engineering
 
 To this end, **DSP** offers a number of powerful _primitives_ for building architectures that compose transformations and offers corresponding implementations that map these transformations to effective LM and RM calls. For instance, **DSP** *annotates* few-shot demonstrations for the LM calls within your arbitrary pipeline automatically, and uses them to improve the quality of your transformations. Once you're happy with things, **DSP** can *compile* your program into a much cheaper version in which LM calls are transparently replaced with calls to a tiny LM created by the **DSP** runtime.
 
-
 <p align="center">
   <img align="center" src="docs/images/DSP-tasks.png" width="460px" />
 </p>
 <p align="left">
   <b>Figure 1:</b> A comparison between three GPT3.5-based systems. The LM often makes false assertions, while the popular retrieve-then-read pipeline fails when simple search can’t find an answer. In contrast, a task-aware DSP program systematically decomposes the problem and produces a correct response. Texts edited for presentation.
 </p>
+
+
+**What does the market say?**
+
+Here is a youtube link that quotes DSP: https://www.youtube.com/watch?v=-lnHHWRCDGk&t=2433s
+An extension talks about Few shot openQA with ColBERT retreival. 
+
 
 
 ## Installation
